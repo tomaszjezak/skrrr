@@ -1,14 +1,14 @@
 # skrrr — US drywall, framing & painting takeoff data brief
 
-## Goal
+## Purpose
 
-Find evidence-backed construction packages for AI quantity-takeoff benchmarking:
+This brief defines the evidence needed for AI quantity-takeoff benchmarking in US construction:
 
 **Clean drawings + matching specifications → marked geometry + completed quantities.**
 
-Prioritize US commercial interiors: offices, schools, healthcare, retail, hospitality, multifamily common areas, and tenant improvements. The unit of collection is a **project × trade × phase × revision package**, not an isolated attractive PDF. This repository contains only this research brief; it contains no scraper, source collection, or benchmark answers.
+The primary scope is US commercial interiors: offices, schools, healthcare, retail, hospitality, multifamily common areas, and tenant improvements. The unit of analysis is a **project × trade × phase × revision package**.
 
-## What to find
+## Evidence requirements
 
 | Role | Required for an ideal package | Details |
 |---|---|---|
@@ -43,7 +43,7 @@ Package completeness and answer correctness are separate axes. A complete vendor
 
 **Hold for investigation:** unknown US jurisdiction, inaccessible downloads, unclear phase/revision, conflicting title blocks, incomplete sheets, uncertain permissions, or quantities that cannot be assigned to a scope. A rejection of a claimed pairing need not discard individually useful input assets.
 
-### Prove identity and matching
+### Project identity and document matching
 
 - Establish US location from a project address, city/state, issuing US agency or explicit project description; record the precise page/section and evidence. A US vendor address, English text or imperial units alone do not establish project jurisdiction.
 - Compare project title/number, location, sheet IDs, issue dates, revision/addendum numbers, phase, rooms, trade and geometry. Preserve discrepancies. Filenames and co-location on a samples page are only weak evidence.
@@ -65,13 +65,11 @@ Where possible, each quantity line should trace to **asset → PDF page index an
 
 Preserve gross/net methods, opening thresholds, wall height sources, sides/layers, coat assumptions, waste/rounding, alternate scope and exclusions. Do not infer absent rules as fact. Keep alternative valid decompositions (for example by room versus wall type) and equivalence mappings rather than forcing one canonical itemization. Document ambiguities, acceptable tolerances and unresolved disagreements; use geometry, scope and aggregate reconciliation together. Group duplicate projects and revisions before any train/evaluation split to prevent leakage.
 
-## Discovery workflow
+## Source evidence and provenance
 
-1. Search trade-specific sources; log query, timestamp, landing page and source class.
-2. Inspect the landing page, then follow actual file links. Record original link, redirect-resolved download URL, HTTP result, content type and retrieval time. A search snippet, preview image or “download” label is not proof of a usable file.
-3. Inspect permitted downloads for title blocks, quantity rows, revision information and markups. Check actual file format, page count and readability; hash retrieved bytes with SHA-256. Do not retain credentials, session tokens or signed URL secrets in a public manifest; use a stable public URL or a redacted access note.
-4. Group only evidence-supported assets; identify missing roles and conflicting metadata. Deduplicate exact hashes and flag likely near-duplicates.
-5. Assign tier, quality and rights status; queue review or record rejection. Report verified facts separately from publisher claims and inferences.
+A useful research record connects the source landing page to actual downloadable files and distinguishes verified content from publisher claims and inference. Search snippets, previews and download labels alone do not establish that a usable document is available.
+
+The supporting metadata includes original and resolved public URLs, date checked, access result, file format, page count, readability and SHA-256 hash where a file has been retrieved. Public records exclude credentials, session tokens and signed-link secrets. Exact duplicates and likely related versions are identified separately. Missing roles, conflicting metadata, review status and rights uncertainty remain visible in the record.
 
 ### Source classes
 
@@ -81,9 +79,9 @@ Preserve gross/net methods, opening thresholds, wall height sources, sides/layer
 - Academic supplements and repositories, GitHub, Hugging Face and Zenodo: check asset-level provenance, project country, task definition and license coverage. A repository license does not automatically cover third-party drawings.
 - Trade associations and public instructional resources: useful measurement rules and worked examples; distinguish generic teaching diagrams from real project packages.
 
-### Search seed templates
+### Illustrative research queries
 
-Substitute a US state/city, institution, project name or domain; run drywall and painting searches separately.
+The following query templates cover the priority trades and source classes. Braced terms represent a project, city or state of interest.
 
 ```text
 "drywall" "sample takeoff" "drawings" filetype:pdf
@@ -99,17 +97,17 @@ site:huggingface.co/datasets "construction drawings"
 site:zenodo.org "quantity takeoff"
 ```
 
-Queries are discovery aids, not assertions that a complete package exists. Broaden terminology to gypsum board/GWB, partitions, cold-formed metal framing, finishes, coating and reflected ceiling plan. Do not broaden away from the priority trades merely to increase results.
+These queries do not imply that a complete package exists. Related terminology includes gypsum board/GWB, partitions, cold-formed metal framing, finishes, coating and reflected ceiling plan. Drywall/framing and painting remain the primary research scope.
 
 ## Access, permissions and licensing
 
-Respect site terms, robots policies, rate limits and access restrictions. Use ordinary permitted downloads. No login/paywall bypass, CAPTCHA circumvention, scraping evasion or credential harvesting. Stop or record `access_restricted` when access is unavailable.
+Source use is subject to site terms, robots policies, rate limits and access restrictions. Only permitted access is in scope; login or paywall bypass, CAPTCHA circumvention, access-control evasion and credential harvesting are excluded. Unavailable access is recorded as `access_restricted`.
 
 **Publicly accessible is not the same as licensed for redistribution or model training.** Record asset-level license text/URL, terms URL, attribution requirements, permission evidence and unknowns. Distinguish access permission, local research use, redistribution and training permission; use `unknown` when unsupported. Do not infer public-domain status merely from a government host. Keep restricted or unresolved files out of a public collection until the intended use is authorized. This brief grants no rights in third-party materials.
 
-## Scraper output contract
+## Research record schema
 
-Deliver a machine-readable package manifest (JSON or JSONL), an asset inventory and a concise review/missing-assets report. Preserve raw source facts alongside normalized values; use `null` plus a reason for unknown values, not invented placeholders in real records.
+The desired research record consists of a package manifest (JSON or JSONL), an asset inventory and a concise assessment of evidence and missing assets. Raw source facts remain alongside normalized values. Unknown values use `null` with an explanation.
 
 | Group | Required fields |
 |---|---|
@@ -125,7 +123,7 @@ Roles: `original_drawing`, `specification`, `marked_drawing`, `quantity_takeoff`
 
 ### Hypothetical manifest fragment — not a real source or benchmark
 
-The reserved `example.invalid` URLs and all identifiers below are illustrative. This shortened fragment shows how uncertainty should be represented; production records must include the fields above.
+The reserved `example.invalid` URLs and all identifiers below are illustrative. This shortened fragment shows how uncertainty should be represented; complete research records include the fields above.
 
 ```json
 {
@@ -169,7 +167,7 @@ The reserved `example.invalid` URLs and all identifiers below are illustrative. 
 }
 ```
 
-## Expected collection deliverable (outside this repository)
+## Suggested research archive structure
 
 ```text
 collection/
@@ -187,17 +185,17 @@ collection/
     derived/                # labeled extracts/conversions; never called originals
 ```
 
-Create file directories only for assets permitted to be retained. For blocked or rights-held records, deliver metadata and links only. The report should count A/B/C/D packages separately, summarize US/pairing evidence, list rights holds, duplicates and review gaps, and identify the next missing asset to pursue. Success means useful, traceable paired evidence—not a large pile of PDFs.
+Retained files are limited to assets with appropriate permission. Records with blocked access or unresolved retention rights contain metadata and links only. An accompanying report summarizes A/B/C/D packages separately, US and pairing evidence, rights holds, duplicates, review gaps and missing assets. The research objective is useful, traceable paired evidence.
 
-## Verified public discovery seeds
+## Public examples
 
 ### Lead example: Dover High School / Career Technical Center
 
-**Dover is the lead exemplar for the package structure to seek.** [Caliper's public sample page](https://calipertakeoffs.com/) links a [framing, drywall and ceilings quantity PDF](https://calipertakeoffs.com/samples/caliper-sample-framing-drywall.pdf) and a [public marked drawing preview](https://calipertakeoffs.com/samples/markup-framing-drywall.webp). Both files were successfully retrieved on October 10, 2026. The one-page quantity PDF identifies **25 Alumni Drive, Dover, New Hampshire**, establishing US project location, and describes a portfolio exercise rather than commissioned client work.
+**Dover is the lead example of the evidence structure described in this brief.** [Caliper's public sample page](https://calipertakeoffs.com/) links a [framing, drywall and ceilings quantity PDF](https://calipertakeoffs.com/samples/caliper-sample-framing-drywall.pdf) and a [public marked drawing preview](https://calipertakeoffs.com/samples/markup-framing-drywall.webp). Both files were successfully retrieved on October 10, 2026. The one-page quantity PDF identifies **25 Alumni Drive, Dover, New Hampshire**, establishing US project location, and describes a portfolio exercise rather than commissioned client work.
 
-The PDF names the **100% Conformed Set dated September 12, 2016**, with Second Floor Plan **A2.2C**, Second Floor RCP **A3.2C**, and Partition Types **A8.1**, scoped to **Second Floor — Part C**. It includes quantity categories for partitions, framing-related scope and ceilings, plus measurement assumptions and exclusions. This makes it a useful discovery pattern: a named US project, identified source sheets/revision, marked geometry and a quantity summary whose basis can be investigated.
+The PDF names the **100% Conformed Set dated September 12, 2016**, with Second Floor Plan **A2.2C**, Second Floor RCP **A3.2C**, and Partition Types **A8.1**, scoped to **Second Floor — Part C**. It includes quantity categories for partitions, framing-related scope and ceilings, plus measurement assumptions and exclusions. Its value as an example comes from a named US project, identified source sheets/revision, marked geometry and a quantity summary whose basis can be investigated.
 
-The [City of Dover project index](https://www.dover.nh.gov/government/city-operations/public-education/high-school-project/index.html) publishes the conformed construction drawings and specifications. Start with these official input links:
+The [City of Dover project index](https://www.dover.nh.gov/government/city-operations/public-education/high-school-project/index.html) publishes the conformed construction drawings and specifications. Relevant official input documents include:
 
 - [Specifications, Volume 1](https://www.dover.nh.gov/Assets/government/city-operations/public-education/high-school-project/drawings-specs/Specifications%20-%20VOL%201%20-DHS%20Conformed%20Set.pdf).
 - [Drawings, Volume 1 of 4, Part 2](https://www.dover.nh.gov/Assets/government/city-operations/public-education/high-school-project/drawings-specs/Vol%201%20of%204%20DHS-CTC-Conformed%20Set_Part2.pdf).
@@ -205,17 +203,17 @@ The [City of Dover project index](https://www.dover.nh.gov/government/city-opera
 
 Verification on October 10, 2026: all five linked input/output assets returned HTTP 200 without credentials. The cropped raster markup was visually paired with clean **A2.2C (Part 2, PDF page 14)**. **A3.2C is Part 2, PDF page 42**; **A8.1 is Part 3, PDF page 16**; **specification section 092900 starts at Volume 1, PDF page 697**. Page numbers here are 1-based physical PDF pages. The quantity summary explicitly cites the same conformed-set date and sheet IDs. The markup crop has no title block, so retain the visual pairing evidence alongside the vendor's explicit source citation.
 
-**Current status: partial public-source worked example, unreviewed vendor output.** This joins official input-document sources to a vendor quantity summary and marked preview. Classify it as Tier B for the evidenced partial scope, with further scope reconciliation required before benchmark use. The public quantity PDF is a one-page summary, not a verified downloadable Excel workbook: references to workbook tabs or deliverables do not establish that those files are public. The separate markup is a preview image, not a verified complete marked PDF. Detailed takeoff tabs, ceiling markup and independent correctness review remain missing. Preserve asset-level pairing evidence before promoting any scope to an accepted benchmark. Public access does not establish redistribution or training permission; the drawings carry HMFH copyright and the sample carries Caliper copyright, with no redistribution license found. Quantities have not been independently validated. This is a drywall/framing/ceiling exemplar, not a verified painting answer package.
+**Current status: partial public-source worked example, unreviewed vendor output.** This joins official input-document sources to a vendor quantity summary and marked preview. It meets Tier B for the evidenced partial scope, with further scope reconciliation required before benchmark use. The public quantity PDF is a one-page summary, not a verified downloadable Excel workbook: references to workbook tabs or deliverables do not establish that those files are public. The separate markup is a preview image, not a verified complete marked PDF. Detailed takeoff tabs, ceiling markup and independent correctness review remain missing. Preserve asset-level pairing evidence before promoting any scope to an accepted benchmark. Public access does not establish redistribution or training permission; the drawings carry HMFH copyright and the sample carries Caliper copyright, with no redistribution license found. Quantities have not been independently validated. This is a drywall/framing/ceiling exemplar, not a verified painting answer package.
 
-### Secondary trade-specific leads
+### Additional trade-specific examples
 
 Checked October 10, 2026: the four PDF links below returned HTTP 200 and their contents were inspected. These are **Tier C marketing examples, not gold references**. No complete clean-drawings + specifications + marked-drawings + quantity package was established in this bounded check. Download availability can change; recheck before collection. Reuse, redistribution and training permissions are unknown; the sites display all-rights-reserved notices.
 
-| Seed and landing page | Direct downloadable file | Observed evidence | Gaps and next action |
+| Example and landing page | Direct downloadable file | Observed evidence | Gaps and unresolved evidence |
 |---|---|---|---|
 | [Kapolei commercial drywall sample](https://drywalltakeoffservices.us/drywall-estimate-sample/) | [12-page drywall/framing PDF](https://drywalltakeoffservices.us/wp-content/uploads/2026/07/drywall-takeoff-sample-commercial_-Hawai.pdf) | Gypsum board, metal studs and track quantities; color-coded marked floor/locker drawings. Quantity cover and marked sheet A201 identify U-Haul Moving & Storage of Kapolei, Building A, Kapolei, HI 96707: US location evidenced. | Separate clean drawings and specifications not verified. A201 shows December 18, 2024 bid/permit and May 8, 2025 plan-check revisions; takeoff date is blank, so revision alignment remains unverified. Seek the matching issued originals/specifications and confirm quantity basis. |
 | Veracity exterior/interior drywall example; discovery URL is the PDF itself (separate landing page not verified) | [6-page drywall PDF](https://veracityestimating.com/wp-content/uploads/2025/02/exterior-and-interior-finishes-drywall-estimate-sample.pdf) | Quantities, costs and marked overlays; project/location redacted. | US project location unknown. Clean drawings, specifications and revision alignment not verified; hold for identity and pairing evidence. |
 | [Commercial painting samples](https://paintingtakeoffservices.com/painting-estimate-samples/) | [16-page commercial painting PDF](https://paintingtakeoffservices.com/wp-content/uploads/2025/02/commercial-painting-takeoff-sample.pdf) | Walmart-branded scope, interior/exterior quantities and color-coded architectural/MEP marks. | Location blank/redacted; US location unverified. Brand and units do not establish jurisdiction. Separate clean plans, specifications and revision alignment not verified. |
 | [Hotel painting sample landing page](https://paintingtakeoffservices.com/painting-estimate-samples/) | [23-page hotel painting PDF](https://paintingtakeoffservices.com/wp-content/uploads/2025/02/commercial-painting-takeoff-sample-hotel.pdf) | Room/wall/ceiling quantities, room counts and measured architectural drawings. | US project location unverified: an architect's Charlotte, NC address is not a project address. Clean plans, specifications and revision alignment not verified. |
 
-These seeds demonstrate what an honest partial record looks like. Seek missing matching source assets through permitted public routes; do not infer them, remove redactions or promote a sample to a verified reference on appearance alone.
+These examples illustrate partial evidence records. Missing matching assets, redacted information and unresolved correctness remain explicit limitations; presentation quality alone does not establish reference quality.
