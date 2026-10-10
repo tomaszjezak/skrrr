@@ -191,6 +191,16 @@ Create file directories only for assets permitted to be retained. For blocked or
 
 ## Verified public discovery seeds
 
+### Lead example: Dover High School / Career Technical Center
+
+**Dover is the lead exemplar for the package structure to seek.** [Caliper's public sample page](https://calipertakeoffs.com/) links a [framing, drywall and ceilings quantity PDF](https://calipertakeoffs.com/samples/caliper-sample-framing-drywall.pdf) and a [public marked drawing preview](https://calipertakeoffs.com/samples/markup-framing-drywall.webp). Both files were successfully retrieved on October 10, 2026. The one-page quantity PDF identifies **25 Alumni Drive, Dover, New Hampshire**, establishing US project location, and describes a portfolio exercise rather than commissioned client work.
+
+The PDF names the **100% Conformed Set dated September 12, 2016**, with Second Floor Plan **A2.2C**, Second Floor RCP **A3.2C**, and Partition Types **A8.1**, scoped to **Second Floor — Part C**. It includes quantity categories for partitions, framing-related scope and ceilings, plus measurement assumptions and exclusions. This makes it a useful discovery pattern: a named US project, identified source sheets/revision, marked geometry and a quantity summary whose basis can be investigated.
+
+**Current status: Tier C, unreviewed vendor example.** The public PDF is a summary, not a verified downloadable Excel workbook: references to workbook tabs or deliverables do not establish that those files are public. The separate markup is a preview image, not a verified complete marked PDF. Original city drawings, matching specifications, full quantity detail, complete markups and their revision alignment must be independently located and checked before promoting this package. Treat the vendor's statement that it used public city plans as a provenance lead, not proof of a recovered original set. Public access does not establish redistribution or training permission; rights remain unresolved. This is a drywall/framing/ceiling exemplar, not a verified painting answer package.
+
+### Secondary trade-specific leads
+
 Checked October 10, 2026: the four PDF links below returned HTTP 200 and their contents were inspected. These are **Tier C marketing examples, not gold references**. No complete clean-drawings + specifications + marked-drawings + quantity package was established in this bounded check. Download availability can change; recheck before collection. Reuse, redistribution and training permissions are unknown; the sites display all-rights-reserved notices.
 
 | Seed and landing page | Direct downloadable file | Observed evidence | Gaps and next action |
